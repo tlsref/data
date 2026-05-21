@@ -1,6 +1,6 @@
 {
     "version": 5.4,
-    "href": "https://ssl-config.mozilla.org/guidelines/5.4.json",
+    "href": "https://data.tlsref.org/guidelines/5.4.json",
     "configurations": {
         "modern": {
             "ciphers": {

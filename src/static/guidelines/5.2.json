@@ -1,5 +1,5 @@
 {
-    "href": "https://ssl-config.mozilla.org/guidelines/5.2.json",
+    "href": "https://data.tlsref.org/guidelines/5.2.json",
     "configurations": {
         "modern": {
             "ciphers": {

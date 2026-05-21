@@ -1,6 +1,6 @@
 {
     "version": 5.6,
-    "href": "https://ssl-config.mozilla.org/guidelines/5.6.json",
+    "href": "https://data.tlsref.org/guidelines/5.6.json",
     "configurations": {
         "modern": {
             "certificate_curves": ["prime256v1", "secp384r1"],
