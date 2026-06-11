@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Machine-readable TLS guidelines and DH parameter files served by data.tlsref.org.">
+  <title>data.tlsref.org</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #0f766e;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Brand badge ── */
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45em;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: .03em;
+      border-radius: 999px;
+      padding: .35em 1.1em;
+      text-decoration: none;
+    }
+    .brand-icon {
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 0;
+      width: 100%;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 1rem;
+      width: 100%;
+    }
+    .hero h1 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: .6rem;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.6;
+    }
+
+    /* ── File listing ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .file-list {
+      list-style: none;
+    }
+    .file-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: .8rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .file-list li:last-child {
+      border-bottom: none;
+    }
+    .file-list a {
+      color: var(--brand);
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-size: .875rem;
+      white-space: nowrap;
+    }
+    .file-list a:hover {
+      text-decoration: underline;
+    }
+    .file-desc {
+      color: var(--muted);
+      font-size: .875rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      font-size: .875rem;
+    }
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .footer-tagline {
+      max-width: 28ch;
+      line-height: 1.5;
+    }
+    footer a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+    footer a:hover { color: #fff; }
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .footer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45em;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: .03em;
+      border-radius: 999px;
+      padding: .35em 1.1em;
+      text-decoration: none;
+    }
+
+    @media (max-width: 540px) {
+      .file-list li { flex-direction: column; gap: .2rem; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://tlsref.org" class="brand-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="brand-icon" aria-hidden="true" fill="none">
+        <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <line x1="10" y1="4"  x2="28" y2="6"/>
+          <line x1="28" y1="6"  x2="22" y2="28"/>
+          <line x1="22" y1="28" x2="4"  y2="26"/>
+          <line x1="4"  y1="26" x2="10" y2="4"/>
+          <line x1="10" y1="4"  x2="22" y2="28"/>
+          <line x1="28" y1="6"  x2="4"  y2="26"/>
+        </g>
+        <g fill="currentColor">
+          <circle cx="10" cy="4"  r="2.5"/>
+          <circle cx="28" cy="6"  r="2.5"/>
+          <circle cx="22" cy="28" r="2.5"/>
+          <circle cx="4"  cy="26" r="2.5"/>
+        </g>
+      </svg>
+      TLSRef
+    </a>
+  </header>
+
+  <section class="hero">
+    <h1>Machine-readable data</h1>
+    <p>Static files served at <code>data.tlsref.org</code> — TLS guidelines as structured JSON and DH parameter files.</p>
+  </section>
+
+  <main>
+
+    <div class="section">
+      <div class="section-header">TLSRef Guidelines (JSON)</div>
+      <ul class="file-list">
+        <li>
+          <a href="/static/guidelines/latest.json">/static/guidelines/latest.json</a>
+          <span class="file-desc">Latest version (alias)</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/6.0.json">/static/guidelines/6.0.json</a>
+          <span class="file-desc">v6.0</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.8.json">/static/guidelines/5.8.json</a>
+          <span class="file-desc">v5.8</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.7.json">/static/guidelines/5.7.json</a>
+          <span class="file-desc">v5.7</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.6.json">/static/guidelines/5.6.json</a>
+          <span class="file-desc">v5.6</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.5.json">/static/guidelines/5.5.json</a>
+          <span class="file-desc">v5.5</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.4.json">/static/guidelines/5.4.json</a>
+          <span class="file-desc">v5.4</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.3.json">/static/guidelines/5.3.json</a>
+          <span class="file-desc">v5.3</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.2.json">/static/guidelines/5.2.json</a>
+          <span class="file-desc">v5.2</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.1.json">/static/guidelines/5.1.json</a>
+          <span class="file-desc">v5.1</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/5.0.json">/static/guidelines/5.0.json</a>
+          <span class="file-desc">v5.0</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/4.0.json">/static/guidelines/4.0.json</a>
+          <span class="file-desc">v4.0</span>
+        </li>
+        <li>
+          <a href="/static/guidelines/CHANGELOG.md">/static/guidelines/CHANGELOG.md</a>
+          <span class="file-desc">Changelog</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">DH Parameters</div>
+      <ul class="file-list">
+        <li>
+          <a href="/static/ffdhe2048.txt">/static/ffdhe2048.txt</a>
+          <span class="file-desc">2048-bit FFDHE parameters (RFC 7919)</span>
+        </li>
+        <li>
+          <a href="/static/ffdhe4096.txt">/static/ffdhe4096.txt</a>
+          <span class="file-desc">4096-bit FFDHE parameters (RFC 7919)</span>
+        </li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="https://tlsref.org" class="footer-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="brand-icon" aria-hidden="true" fill="none">
+            <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="10" y1="4"  x2="28" y2="6"/>
+              <line x1="28" y1="6"  x2="22" y2="28"/>
+              <line x1="22" y1="28" x2="4"  y2="26"/>
+              <line x1="4"  y1="26" x2="10" y2="4"/>
+              <line x1="10" y1="4"  x2="22" y2="28"/>
+              <line x1="28" y1="6"  x2="4"  y2="26"/>
+            </g>
+            <g fill="currentColor">
+              <circle cx="10" cy="4"  r="2.5"/>
+              <circle cx="28" cy="6"  r="2.5"/>
+              <circle cx="22" cy="28" r="2.5"/>
+              <circle cx="4"  cy="26" r="2.5"/>
+            </g>
+          </svg>
+          TLSRef
+        </a>
+        <p class="footer-tagline">TLS configuration references and tools for secure deployments.</p>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="https://tlsref.org">tlsref.org</a></li>
+          <li><a href="https://github.com/tlsref/data">Source on GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
