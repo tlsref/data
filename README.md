@@ -6,13 +6,13 @@ Static data files served at [data.tlsref.org](https://data.tlsref.org), used by 
 
 **DH Parameters** — pre-built PEM files for configuring Diffie-Hellman key exchange:
 
-- [`/static/ffdhe2048.txt`](https://data.tlsref.org/static/ffdhe2048.txt) — 2048-bit FFDHE params (RFC 7919)
-- [`/static/ffdhe4096.txt`](https://data.tlsref.org/static/ffdhe4096.txt) — 4096-bit FFDHE params (RFC 7919)
+- [`/ffdhe/ffdhe2048.txt`](https://data.tlsref.org/ffdhe/ffdhe2048.txt) — 2048-bit FFDHE params (RFC 7919)
+- [`/ffdhe/ffdhe4096.txt`](https://data.tlsref.org/ffdhe/ffdhe4096.txt) — 4096-bit FFDHE params (RFC 7919)
 
 **TLSRef Guidelines** — JSON snapshots of the TLSRef guidelines, one file per version (4.0 through 6.0):
 
-- [`/static/guidelines/6.0.json`](https://data.tlsref.org/static/guidelines/6.0.json) — latest
-- [`/static/guidelines/CHANGELOG.md`](https://data.tlsref.org/static/guidelines/CHANGELOG.md) — version history
+- [`/guidelines/6.0.json`](https://data.tlsref.org/guidelines/6.0.json) — latest
+- [`/guidelines/CHANGELOG.md`](https://data.tlsref.org/guidelines/CHANGELOG.md) — version history
 
 ## Tools
 
